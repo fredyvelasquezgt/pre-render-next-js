@@ -36,7 +36,9 @@ export async function getStaticProps(context) {
 export async function getStaticPaths() {
     return {
         paths: [
-            {params: {pid:}}
+            {params: {pid: 'p1'}}, 
+            {params: {pid: 'p2'}}, 
+            {params: {pid: 'p3'}}, 
         ]
     }
 }
