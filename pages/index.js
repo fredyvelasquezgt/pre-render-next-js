@@ -4,7 +4,9 @@ function HomePage(props) {
 
   return (
     <ul>
-      {products.map(product => ( <li key={product.id}>{product.title}</li> ))}
+      {products.map((product) => ( 
+      <li key={product.id}>{product.title}</li> 
+      ))}
     </ul>
   );
 }
