@@ -1,4 +1,7 @@
 function HomePage(props) {
+
+  const {products} = props;
+
   return (
     <ul>
       <li>Product 1</li>
