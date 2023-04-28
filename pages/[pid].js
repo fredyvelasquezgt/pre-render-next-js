@@ -33,4 +33,12 @@ export async function getStaticProps(context) {
   };
 }
 
+export async function getStaticPaths() {
+    return {
+        paths: [
+            {params: {pid:}}
+        ]
+    }
+}
+
 export default ProductDetailPage;
