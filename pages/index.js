@@ -20,7 +20,7 @@ export async function getStaticProps() {
   const data = JSON.parse(jsonData);
 
   return {props: {
-    products: [{id: 'p1', title: 'Product 1'}]
+    products: data.products
   }}
 }
 
