@@ -22,7 +22,7 @@ async function getData() {
   const jsonData = await fs.readFile(filePath);
   const data = JSON.parse(jsonData);
 
-  return data;
+  return data; //retorno data porque es algo que voy a usar y mucho
 }
 
 export async function getStaticProps(context) {
@@ -48,6 +48,7 @@ export async function getStaticPaths() {
 
     const pathsWithParams = ids.map((id) => ({params: {pid: id}}))
 
+  //esta es una forma mas real de entender todo
   return {
     paths: pathsWithParams,
     fallback: false,
