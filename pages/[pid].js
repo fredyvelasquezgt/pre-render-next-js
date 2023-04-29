@@ -18,17 +18,17 @@ function ProductDetailPage(props) {
 export async function getStaticProps(context) {
   const { params } = context;
 
-  const productId = params.id;
+  const productId = params.pid;
 
   const filePath = path.join(process.cwd(), "data", "dummy-backend.json");
   const jsonData = await fs.readFile(filePath);
   const data = JSON.parse(jsonData);
 
-  const product = data.products.find((products) => productId.id === productId);
+  const product = data.products.find((product) => product.id === productId);
 
   return {
     props: {
-      loadedProduct: product,
+      loadedProduct: product
     },
   };
 }
@@ -39,7 +39,8 @@ export async function getStaticPaths() {
             {params: {pid: 'p1'}}, 
             {params: {pid: 'p2'}}, 
             {params: {pid: 'p3'}}, 
-        ]
+        ],
+        fallback: false
     }
 }
 

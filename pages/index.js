@@ -19,17 +19,6 @@ export async function getStaticProps() {
   console.log('re generating')
   
 
-  if(!data) {
-    return {
-      redirect: {
-        destination: '/no-data'
-      }
-    }
-  }
-
-  if(data.products.length === 0) {
-    return {notFound: true}
-  }
 
   return {props: {
     products: data.products
