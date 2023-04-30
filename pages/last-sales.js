@@ -30,11 +30,15 @@ function LastSalesPage() {
     return <p>Loading...</p>;
   }
 
+  if(!sales) {
+      return <p>No data</p>
+  }
+
   return (
     <ul>
       {sales.map((sale) => (
         <li key={sale.id}>
-          {sale.username} - {sale.volume}
+          {sale.username} - ${sale.volume}
         </li>
       ))}
     </ul>
