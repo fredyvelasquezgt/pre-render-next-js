@@ -1,15 +1,30 @@
-import { useEffect } from "react"
+import { useEffect, useState } from "react";
 
 function LastSalesPage() {
+  const [sales, setSales] = useState();
+  const [isLoading, setIsLoading] = useState(false);
 
-    useEffect(() => {
-       fetch();
-    }, [])
+  useEffect(() => {
+    setIsLoading(true);
+    fetch("https://nextjs-course-40c91-default-rtdb.firebaseio.com/sales.json")
+      .then((response) => response.json())
+      .then((data) => {
 
+        //asi transformo la data que viene de un objecto y la vuelvo un array
+        const transformedSales = [];
+        for (const key in data) {
+          transformedSales.push({
+            id: key,
+            username: data[key].username,
+            volume: data[key].volume,
+          });
+        }
+        setSales();
+        setIsLoading(false);
+      });
+  }, []);
 
-    return <ul>
-
-    </ul>
+  return <ul></ul>;
 }
 
 export default LastSalesPage;
