@@ -7,8 +7,8 @@ function LastSalesPage() {
   useEffect(() => {
     setIsLoading(true);
     fetch("https://nextjs-course-40c91-default-rtdb.firebaseio.com/sales.json")
-      .then((response) => response.json())
-      .then((data) => {
+      .then((response) => response.json()) //aqui accedo a la informacion
+      .then((data) => { //aqui ya puedo manipular la informacion
 
         //asi transformo la data que viene de un objecto y la vuelvo un array
         const transformedSales = [];
@@ -19,7 +19,8 @@ function LastSalesPage() {
             volume: data[key].volume,
           });
         }
-        setSales();
+        //aqui meto el array ya con la data transformada
+        setSales(transformedSales);
         setIsLoading(false);
       });
   }, []);
