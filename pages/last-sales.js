@@ -51,7 +51,7 @@ function LastSalesPage() {
     return <p>Failed to load</p>;
   }
 
-  if (!data || !sales) {
+  if (!data && !sales) {
     return <p>Loading...</p>;
   }
 
