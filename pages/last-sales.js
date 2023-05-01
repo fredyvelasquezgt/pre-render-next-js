@@ -1,41 +1,57 @@
 import { useEffect, useState } from "react";
-import useSWR from 'swr'
+import useSWR from "swr";
 
 function LastSalesPage() {
   const [sales, setSales] = useState();
-  const [isLoading, setIsLoading] = useState(false);
+  //   const [isLoading, setIsLoading] = useState(false);
 
-   const {data, error} =  useSWR('https://nextjs-course-40c91-default-rtdb.firebaseio.com/sales.json');
+  const { data, error } = useSWR(
+    "https://nextjs-course-40c91-default-rtdb.firebaseio.com/sales.json"
+  );
 
+  useEffect(() => {
+    if (data) {
+      const transformedSales = [];
 
-//   useEffect(() => {
-//     setIsLoading(true);
-//     fetch("https://nextjs-course-40c91-default-rtdb.firebaseio.com/sales.json")
-//       .then((response) => response.json()) //aqui accedo a la informacion
-//       .then((data) => {
-//         //aqui ya puedo manipular la informacion
+      for (const key in data) {
+        transformedSales.push({
+          id: key,
+          username: data[key].username,
+          volume: data[key].volume,
+        });
+      }
+      setSales(transformedSales);
+    }
+  }, [data]);
 
-//         //asi transformo la data que viene de un objecto y la vuelvo un array
-//         const transformedSales = [];
-//         for (const key in data) {
-//           transformedSales.push({
-//             id: key,
-//             username: data[key].username,
-//             volume: data[key].volume,
-//           });
-//         }
-//         //aqui meto el array ya con la data transformada
-//         setSales(transformedSales);
-//         setIsLoading(false); //aqui ya no cargo nada
-//       });
-//   }, []);
+  //   useEffect(() => {
+  //     setIsLoading(true);
+  //     fetch("https://nextjs-course-40c91-default-rtdb.firebaseio.com/sales.json")
+  //       .then((response) => response.json()) //aqui accedo a la informacion
+  //       .then((data) => {
+  //         //aqui ya puedo manipular la informacion
 
-  if (isLoading) {
-    return <p>Loading...</p>;
+  //         //asi transformo la data que viene de un objecto y la vuelvo un array
+  //         const transformedSales = [];
+  //         for (const key in data) {
+  //           transformedSales.push({
+  //             id: key,
+  //             username: data[key].username,
+  //             volume: data[key].volume,
+  //           });
+  //         }
+  //         //aqui meto el array ya con la data transformada
+  //         setSales(transformedSales);
+  //         setIsLoading(false); //aqui ya no cargo nada
+  //       });
+  //   }, []);
+
+  if (error) {
+    return <p>Failed to load</p>;
   }
 
-  if(!sales) {
-      return <p>No data</p>
+  if (!data || !sales) {
+    return <p>Loading...</p>;
   }
 
   return (
