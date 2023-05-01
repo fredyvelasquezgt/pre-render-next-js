@@ -66,4 +66,24 @@ function LastSalesPage() {
   );
 }
 
+export async function getStaticProps() {
+    const response = await fetch(
+      'https://nextjs-course-c81cc-default-rtdb.firebaseio.com/sales.json'
+    );
+    const data = await response.json();
+  
+    const transformedSales = [];
+  
+    for (const key in data) {
+      transformedSales.push({
+        id: key,
+        username: data[key].username,
+        volume: data[key].volume,
+      });
+    }
+  
+    return { props: { sales: transformedSales } };
+  }
+  
+
 export default LastSalesPage;
